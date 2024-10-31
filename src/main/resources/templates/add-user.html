@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User info</title>
+</head>
+<body>
+<h2>User info</h2>
+<br>
+<form th:action="@{/saveUser}" th:object="${user}" method="post">
+
+    <input type="hidden" th:field="*{id}"/>
+    <label>Name:</label>
+    <input type="text" th:field="*{name}" required/>
+    <br><br>
+    <label>Surname:</label>
+    <input type="text" th:field="*{surname}" required/>
+    <br><br>
+    <label>Age:</label>
+    <input type="text" th:field="*{age}" required/>
+    <br><br>
+    <label>Email:</label>
+    <input type="text" th:field="*{email}" required/>
+    <br><br>
+    <label>Password:</label>
+    <input type="password" th:field="*{password}" required/>
+
+    <p>
+        <label>Roles:</label>
+           <span th:each="role : ${allRoles}">
+               <input type="checkbox" th:value="${role.id}" th:field="*{roles}"/>
+               <span th:text="${role.name}"></span>
+           </span>
+    </p>
+
+    <input type="submit" value="Ok">
+    <br><br>
+</form>
+<a th:href="@{/admin}">
+    <button type="button">Back to list</button>
+</a>
+</body>
+</html>
